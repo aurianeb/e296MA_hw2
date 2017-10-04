@@ -6,12 +6,11 @@ classdef AggressiveDriver < Driver
             this = this@Driver(name, weight);
         end
         
-        function [x] = throttle_action(this,car,env)
-            if car.current_speed<car.max_speed
-                x = car.max_acceleration;
+        function [x] = throttle_action(this, car,  env)
+            if(car.current_speed<car.max_speed)
+                return 0.5*car.max_acceleration;
             else
-                x = -car.max_acceleration;
-            end
+                return -0.5*car.max_acceleration;
         end
             
         function [x] = stop_for_refueling(this,  car,  env)
